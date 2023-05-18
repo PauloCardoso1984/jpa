@@ -50,6 +50,17 @@ public class TestCoinfig implements CommandLineRunner{
 		categoryRepository.saveAll(Arrays.asList(cat1, cat2, cat3));
 		productRepository.saveAll(Arrays.asList(p1, p2, p3, p4, p5));
 		
+		
+		p1.getCategories().add(cat2);
+		p2.getCategories().add(cat1);
+		p2.getCategories().add(cat3);
+		p3.getCategories().add(cat3);
+		p4.getCategories().add(cat3);
+		p5.getCategories().add(cat2);
+		
+		productRepository.saveAll(Arrays.asList(p1, p2, p3, p4, p5));
+		
+		
 		User u1 = new User(null, "Paulo Cardoso", "paulocardoso@gmail.com", "19997074340", "123456"); 
 		User u2 = new User(null, "Reginaldo Cardoso", "reginaldocardoso@gmail.com", "19997074340", "123456"); 
 		
