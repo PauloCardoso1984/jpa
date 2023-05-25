@@ -85,6 +85,14 @@ public class Order implements Serializable {
 		this.client = client;
 	}
 	
+	//PAYMENT → PAGAMENTO
+	public Payment getPayment() {
+		return payment;
+	}
+	public void setPayment(Payment payment) {
+		this.payment = payment;
+	}
+	
 	public OrderStatus getOrderStatus () {
 		return OrderStatus.valueOf(orderStatus);
 	}
@@ -93,13 +101,14 @@ public class Order implements Serializable {
 		if (orderStatus != null) {
 		this.orderStatus = orderStatus.getCode();
 	}
-}	
-
-	public Payment getPayment() {
-		return payment;
-	}
-	public void setPayment(Payment payment) {
-		this.payment = payment;
+}
+	// METODO TOTAL DO PEDIDO
+	public Double getTotal() {
+		double sum = 0.0;
+		for (OrderItem x : items) {
+			sum += x.getSubTotal();
+		}
+		return sum;
 	}
 
 	@Override
