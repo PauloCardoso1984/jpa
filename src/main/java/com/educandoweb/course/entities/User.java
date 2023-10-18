@@ -14,11 +14,15 @@ import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
+// MAPEAMENTOS
 @Entity
 @Table(name = "tb_user")
+
+// IMPLEMENTAR O Serializable COM NUMERO DE SÉRIE
 public class User implements Serializable { 
 	private static final long serialVersionUID = 1L;
 	
+	// MAPEAMENTOS
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@JsonIgnore
@@ -32,15 +36,17 @@ public class User implements Serializable {
 	
 	@OneToMany(mappedBy = "client")
 	private List<Order> orders = new ArrayList<>();
+	
 	// LISTA CRIA-SE APENAS O GET 
 	public List<Order> getOrders() {
 		return orders;
-	} 
+	} 	
 	
-	
+	// CONSTRUTOR VAZIO / PADRÃO
 	public User() {
 	}
 
+	// CONSTRUTORES COM ARGUMENTOS
 	public User(Long id, String name, String email, String phone, String password) {
 		super();
 		this.id = id;
@@ -50,6 +56,7 @@ public class User implements Serializable {
 		this.password = password;
 	}
 
+	// GET e SET
 	public Long getId() {
 		return id;
 	}
@@ -89,7 +96,8 @@ public class User implements Serializable {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-
+	
+	// MÉTODOS -> COMPARAÇÃO POR Id
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);
@@ -106,6 +114,4 @@ public class User implements Serializable {
 		User other = (User) obj;
 		return Objects.equals(id, other.id);
 	}
-
-
 }
